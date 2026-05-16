@@ -1,0 +1,207 @@
+#VRML_SIM R2025a utf8
+
+WorldInfo {
+  basicTimeStep 32
+}
+
+Viewpoint {
+  orientation 0 1 0 0
+  position 0 0.4 1
+}
+
+Background {
+  skyColor [ 0.5 0.7 1 ]
+}
+
+PointLight {
+  location 0 1 0
+  intensity 2
+}
+
+Solid {
+  name "ground"
+  children [
+    Shape {
+      geometry Box { size 2 0.01 2 }
+      appearance Appearance {
+        material Material { diffuseColor 0.3 0.6 0.3 }
+      }
+    }
+  ]
+  boundingObject Box { size 2 0.01 2 }
+}
+
+Solid {
+  translation 0.15 0.025 0
+  name "Ball"
+  children [
+    Shape {
+      geometry Sphere { radius 0.02 }
+      appearance Appearance {
+        material Material { diffuseColor 1 0 0 }
+      }
+    }
+  ]
+  boundingObject Sphere { radius 0.02 }
+  physics Physics { density -1 mass 0.04 }
+}
+
+Robot {
+  translation 0 0.22 0
+  name "BipedKicker"
+  controller "kicker_controller"
+  children [
+    Shape {
+      geometry Box { size 0.08 0.04 0.03 }
+      appearance Appearance {
+        material Material { diffuseColor 0.2 0.2 0.2 }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 1 0 0
+        anchor 0.025 0 0
+      }
+      device [
+        RotationalMotor { name "hip_right" minPosition -1.5 maxPosition 1.5 maxVelocity 3 }
+        PositionSensor { name "hip_right_sensor" }
+      ]
+      endPoint Solid {
+        translation 0.025 -0.03 0
+        name "thigh_right"
+        children [
+          Shape {
+            geometry Box { size 0.025 0.06 0.025 }
+            appearance Appearance {
+              material Material { diffuseColor 0.15 0.15 0.15 }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 1 0 0
+              anchor 0 -0.03 0
+            }
+            device [
+              RotationalMotor { name "knee_right" minPosition 0 maxPosition 1.8 maxVelocity 3 }
+              PositionSensor { name "knee_right_sensor" }
+            ]
+            endPoint Solid {
+              translation 0 -0.03 0
+              name "shin_right"
+              children [
+                Shape {
+                  geometry Box { size 0.025 0.055 0.025 }
+                  appearance Appearance {
+                    material Material { diffuseColor 0.15 0.15 0.15 }
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 1 0 0
+                    anchor 0 -0.028 0
+                  }
+                  device [
+                    RotationalMotor { name "ankle_right" minPosition -0.8 maxPosition 0.8 maxVelocity 3 }
+                    PositionSensor { name "ankle_right_sensor" }
+                  ]
+                  endPoint Solid {
+                    translation 0 -0.004 0
+                    name "foot_right"
+                    children [
+                      Shape {
+                        geometry Box { size 0.07 0.008 0.05 }
+                        appearance Appearance {
+                          material Material { diffuseColor 0.1 0.1 0.1 }
+                        }
+                      }
+                    ]
+                    boundingObject Box { size 0.07 0.008 0.05 }
+                    physics Physics { density -1 mass 0.03 }
+                  }
+                }
+              ]
+              boundingObject Box { size 0.025 0.055 0.025 }
+              physics Physics { density -1 mass 0.04 }
+            }
+          }
+        ]
+        boundingObject Box { size 0.025 0.06 0.025 }
+        physics Physics { density -1 mass 0.05 }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 1 0 0
+        anchor -0.025 0 0
+      }
+      device [
+        RotationalMotor { name "hip_left" minPosition -1.5 maxPosition 1.5 maxVelocity 3 }
+        PositionSensor { name "hip_left_sensor" }
+      ]
+      endPoint Solid {
+        translation -0.025 -0.03 0
+        name "thigh_left"
+        children [
+          Shape {
+            geometry Box { size 0.025 0.06 0.025 }
+            appearance Appearance {
+              material Material { diffuseColor 0.15 0.15 0.15 }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              axis 1 0 0
+              anchor 0 -0.03 0
+            }
+            device [
+              RotationalMotor { name "knee_left" minPosition 0 maxPosition 1.8 maxVelocity 3 }
+              PositionSensor { name "knee_left_sensor" }
+            ]
+            endPoint Solid {
+              translation 0 -0.03 0
+              name "shin_left"
+              children [
+                Shape {
+                  geometry Box { size 0.025 0.055 0.025 }
+                  appearance Appearance {
+                    material Material { diffuseColor 0.15 0.15 0.15 }
+                  }
+                }
+                HingeJoint {
+                  jointParameters HingeJointParameters {
+                    axis 1 0 0
+                    anchor 0 -0.028 0
+                  }
+                  device [
+                    RotationalMotor { name "ankle_left" minPosition -0.8 maxPosition 0.8 maxVelocity 3 }
+                    PositionSensor { name "ankle_left_sensor" }
+                  ]
+                  endPoint Solid {
+                    translation 0 -0.004 0
+                    name "foot_left"
+                    children [
+                      Shape {
+                        geometry Box { size 0.07 0.008 0.05 }
+                        appearance Appearance {
+                          material Material { diffuseColor 0.1 0.1 0.1 }
+                        }
+                      }
+                    ]
+                    boundingObject Box { size 0.07 0.008 0.05 }
+                    physics Physics { density -1 mass 0.03 }
+                  }
+                }
+              ]
+              boundingObject Box { size 0.025 0.055 0.025 }
+              physics Physics { density -1 mass 0.04 }
+            }
+          }
+        ]
+        boundingObject Box { size 0.025 0.06 0.025 }
+        physics Physics { density -1 mass 0.05 }
+      }
+    }
+  ]
+  boundingObject Box { size 0.08 0.04 0.03 }
+  physics Physics { density -1 mass 0.15 }
+}
