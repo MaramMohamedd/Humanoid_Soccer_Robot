@@ -16,8 +16,18 @@ Servos require more current than the Arduino's 5V pin can supply. Without proper
 | Arduino power | USB from laptop (stable, isolated) |
 
 ### 📐 System Diagram
-<img width="540" height="480" alt="image" src="https://github.com/user-attachments/assets/2ead0494-b517-4a5e-b424-70ab2802e5e2" />
-
+<table>
+  <tr>
+    <td><img width="565" height="350" alt="image" src="https://github.com/user-attachments/assets/378afebb-21a5-4df2-a3f0-967c578d656e" />
+</td>
+    <td><img width="520" height="420" alt="image" src="https://github.com/user-attachments/assets/38f843f7-64b2-4e4d-9b41-c92ff307b7a2" />
+</td>
+  </tr>
+  <tr>
+    <td align="center">Simulation</td>
+    <td align="center">Circuit design </td>
+  </tr>
+</table>
 *Tinkercad simulation (buck converter not available in simulator)*
 
 ### 🔧 Real Wiring Table
